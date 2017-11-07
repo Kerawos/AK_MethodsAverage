@@ -1,0 +1,5 @@
+#Java Basic by AkademiaKodu.pl 2017
+Methods exercise - average
+'Payroll Calculator'
+
+Your task is to implements methods to calculate correct results.
