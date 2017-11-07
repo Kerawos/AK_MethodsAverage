@@ -14,29 +14,12 @@ public class SalaryCalculator {
     private final double rateRetirementContribution = 0.0976;
     private final double ratePensionContribution = 0.015;
     private final double rateSicknessContribution = 0.0245;
+    private final int distanceMaxToWork = 10;
 
     //method to calculate net salary from gross
     public double salaryNetCalculator(double grossAmount, double bonus, int distanceFromWorkPlace){
-        //1 calc total base
-        double grossBase = grossAmount + bonus;
-        if (grossBase<1){
-            throw new IllegalArgumentException("Gross Base must be bigger than 0");
-        }
-        if (distanceFromWorkPlace<0){
-            throw new IllegalArgumentException("Distance from work must be positive!");
-        }
-
-        //2 calc zus tribute
-        double zusTribute = calcZUSTribute(grossBase);
-        double grossAfterZus = grossBase - zusTribute;
-
-        //3 calc healthTribute
-        double healthTribute = calcMedicalInsurance(grossAfterZus);
-
-        //4 calc advanceForIncomeTax
-        double advanceForIncomeTax = calcAdvanceOfIncomeTax(grossAfterZus, distanceFromWorkPlace);
-
-        return roundFinancial(grossBase - zusTribute - healthTribute - advanceForIncomeTax);
+        //todo
+        return 0;
     }
 
     //method to rounded two decimal places (without using BigDecimals)
@@ -45,10 +28,8 @@ public class SalaryCalculator {
     }
 
     public double calcZUSTribute(double totalGrossAmount){
-        double retirementContribution = calcRetirementContribution(totalGrossAmount);
-        double pensionContribution = calcPensionContribution(totalGrossAmount);
-        double sicknessContribution = calcSicknessContribution(totalGrossAmount);
-        return roundFinancial(retirementContribution + pensionContribution + sicknessContribution);
+        //todo
+        return 0;
     }
 
     public double calcMedicalInsurance(double grossAfterZUS){
@@ -56,47 +37,39 @@ public class SalaryCalculator {
     }
 
     public double calcRetirementContribution(double grossAmount){
-        return roundFinancial(grossAmount * getRateRetirementContribution());
+        //todo
+        return 0;
     }
 
     public double calcPensionContribution(double grossAmount) {
-        return roundFinancial(grossAmount * getRatePensionContribution());
+        //todo
+        return 0;
     }
 
     public double calcSicknessContribution(double grossAmount) {
-        return roundFinancial(grossAmount * getRateSicknessContribution());
+        //todo
+        return 0;
     }
 
     public int calcAdvanceOfIncomeTax(double grossAfterZus, int distanceFromWorkPlace){
-        //calc income cost
-        double advanceForIncomeTax = grossAfterZus - calcIncomeCost(distanceFromWorkPlace);
-        if (advanceForIncomeTax<getIncomeTaxThreshold()){
-            advanceForIncomeTax =  roundFinancial((advanceForIncomeTax*getTaxThresholdFirst()));
-        } else {
-            advanceForIncomeTax = roundFinancial((advanceForIncomeTax*getTaxThresholdSecond()));
-        }
-        advanceForIncomeTax-=getAmountFreeOfTax();
-        advanceForIncomeTax-=calcTempHealthTribute(grossAfterZus);
-        return (int)advanceForIncomeTax;
+        //todo
+        return (int)0.0;
     }
 
     public double calcIncomeCost(int distanceFromWorkPlace){
-        if (isLocal(distanceFromWorkPlace)){
-            return getIncomeAmountLocal();
-        }
-        return getIncomeAmountOutside();
+        //todo
+        return 0;
     }
 
     public boolean isLocal(int distanceFromWorkPlace){
-        if (distanceFromWorkPlace>10){
-            return false;
-        }
-        return true;
+        //todo
+        return false;
     }
 
 
     public double calcTempHealthTribute(double grossAfterZUS){
-        return roundFinancial(grossAfterZUS * getTaxHealthTemp());
+        //todo
+        return 0;
     }
 
     //getters
@@ -142,5 +115,9 @@ public class SalaryCalculator {
 
     public double getRateSicknessContribution() {
         return rateSicknessContribution;
+    }
+
+    public int getDistanceMaxToWork() {
+        return distanceMaxToWork;
     }
 }
